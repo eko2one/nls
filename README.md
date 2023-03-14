@@ -1,4 +1,5 @@
 # nostr link shortener
+A simple link shortener web application built on top of nostr.
 
 ## Setup
 Clone the repo and cd into the directory:
