@@ -6,7 +6,7 @@ import LinkShortener from "./components/LinkShortener.vue";
   <div>
     nostr.ls
   </div>
-  <LinkShortener msg="Vite + Vue" />
+  <LinkShortener />
 </template>
 
 <style scoped>

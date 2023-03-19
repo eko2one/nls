@@ -8,9 +8,9 @@ router.get('/', (req, res) => {
     })
   })
 
-router.get('/link/:short', (req,res) => {
+router.get('/link/:shortid', (req,res) => {
     return res.status(200).json({
-        "message": "Get link by short string"
+        "message": "Get link by short id: " + req.params.shortid
     })
 })
 
