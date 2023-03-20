@@ -1,5 +1,8 @@
 import nostrConfig from '../configs/nostr.config';
 import { Router } from 'express'
+import crypto from 'crypto'
+import generate from '../util/random';
+
 import {
     relayInit,
     generatePrivateKey,
@@ -51,6 +54,12 @@ router.get('/events', async (req, res) => {
         return res.json(relay)  // needs better error reporting
       }
 
+})
+
+router.get('/random', (req, res) => {
+    return res.status(200).json({
+        id: generate(7)
+    })
 })
 
 export default router
