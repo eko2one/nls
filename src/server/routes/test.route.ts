@@ -40,7 +40,7 @@ router.get('/events', async (req, res) => {
         let events = await relay.list(
         [
           {
-            kinds: [0, 1]
+            kinds: [1000, 10000 ]
             }
         ])
 

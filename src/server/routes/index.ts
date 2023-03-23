@@ -4,4 +4,4 @@ import test from './test.route'
 export default {
     api,
     test
-};
+}
