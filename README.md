@@ -4,6 +4,8 @@ A simple link shortener web application built on top of nostr.
 ## Sequence Diagram
 
 ```
+//  Usecase 1: Create a shortening
+
  ┌──────┐             ┌─────┐                     ┌──────┐    ┌────────────────┐
  │Client│             │Relay│                     │Server│    │Payment Provider│
  └──┬───┘             └──┬──┘                     └──┬───┘    └───────┬────────┘
@@ -52,6 +54,32 @@ A simple link shortener web application built on top of nostr.
  ┌──┴───┐             ┌──┴──┐                     ┌──┴───┐    ┌───────┴────────┐
  │Client│             │Relay│                     │Server│    │Payment Provider│
  └──────┘             └─────┘                     └──────┘    └────────────────┘
+
+EventTarget
+ ├─kind: 1000
+ ├─pubkey: USER_PK
+ ├─content: USER_INPUT
+ └─..
+
+EventInvoice
+ ├─kind: 30000
+ ├─pubkey: APP_PK
+ ├─content: SERIALIZED_INVOICE_DATA
+ ├─tags:
+ │  ├─p: USER_PK
+ │  └─d: "invoice"
+ └─..
+
+
+EventAnchor
+ ├─kind: 1000
+ ├─pubkey: USER_PK
+ ├─content: APP_ANCHOR_SIGNATURE
+ ├─tags:
+ │  ├─p: APP_PK
+ │  ├─e: EVENT_TARGET_ID
+ │  └─#s: SHORT_ID
+ └─..
 
 ```
 
