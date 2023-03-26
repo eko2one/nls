@@ -3,6 +3,7 @@ A simple link shortener web application built on top of nostr.
 
 ## Sequence Diagram
 
+```
  ┌──────┐             ┌─────┐                     ┌──────┐    ┌────────────────┐
  │Client│             │Relay│                     │Server│    │Payment Provider│
  └──┬───┘             └──┬──┘                     └──┬───┘    └───────┬────────┘
@@ -51,6 +52,8 @@ A simple link shortener web application built on top of nostr.
  ┌──┴───┐             ┌──┴──┐                     ┌──┴───┐    ┌───────┴────────┐
  │Client│             │Relay│                     │Server│    │Payment Provider│
  └──────┘             └─────┘                     └──────┘    └────────────────┘
+
+```
 
 
 ## Setup
