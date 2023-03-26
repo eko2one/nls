@@ -1,6 +1,58 @@
 # nostr link shortener
 A simple link shortener web application built on top of nostr.
 
+## Sequence Diagram
+
+ ┌──────┐             ┌─────┐                     ┌──────┐    ┌────────────────┐
+ │Client│             │Relay│                     │Server│    │Payment Provider│
+ └──┬───┘             └──┬──┘                     └──┬───┘    └───────┬────────┘
+    │                    │                           │                │
+    │PublishEventTarget()│                           │                │
+    │───────────────────>│                           │                │
+    │                    │                           │                │
+    │               SendEventTarget()                │                │
+    │───────────────────────────────────────────────>│                │
+    │                    │                           │                │
+    │                    │     ReadEventTarget()     │                │
+    │                    │<──────────────────────────│                │
+    │                    │                           │                │
+    │                    │                           │CreatePayment() │
+    │                    │                           │───────────────>│
+    │                    │                           │                │
+    │                    │   PublishEventInvoice()   │                │
+    │                    │<──────────────────────────│                │
+    │                    │                           │                │
+    │ ReadEventInvoice() │                           │                │
+    │───────────────────>│                           │                │
+    │                    │                           │                │
+    │              ListenPaymentState()              │                │
+    │───────────────────────────────────────────────>│                │
+    │                    │                           │                │
+    │                    │   ProcessPayment()        │                │
+    │────────────────────────────────────────────────────────────────>│
+    │                    │                           │                │
+    │                    │                           │ConfirmPayment()│
+    │                    │                           │<───────────────│
+    │                    │                           │                │
+    │                    │ replaceEventInvoice(paid) │                │
+    │                    │<──────────────────────────│                │
+    │                    │                           │                │
+    │              CreateEventAnchor()               │                │
+    │<───────────────────────────────────────────────│                │
+    │                    │                           │                │
+    │PublishEventAnchor()│                           │                │
+    │───────────────────>│                           │                │
+    │                    │                           │                │
+    │                    │     ReadEventAnchor()     │                │
+    │                    │<──────────────────────────│                │
+    │                    │                           │                │
+    │                    │replaceEventInvoice(anchor)│                │
+    │                    │<──────────────────────────│                │
+ ┌──┴───┐             ┌──┴──┐                     ┌──┴───┐    ┌───────┴────────┐
+ │Client│             │Relay│                     │Server│    │Payment Provider│
+ └──────┘             └─────┘                     └──────┘    └────────────────┘
+
+
 ## Setup
 Clone the repo and cd into the directory:
 
